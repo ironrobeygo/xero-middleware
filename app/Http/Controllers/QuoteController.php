@@ -11,19 +11,21 @@ class QuoteController extends Controller
 {
     public function index(Request $request, OauthCredentialManager $xeroCredentials){
         $fileName = $request->quoteNumber.".pdf";
-        $this->getQuoteAsPDF($xeroCredentials->getAccessToken(),$fileName);
+        $quoteId = $request->quoteId;
+        $tenant = $request->tenant;
+        $this->getQuoteAsPDF($xeroCredentials->getAccessToken(),$fileName,$quoteId,$tenant);
         return Storage::disk('google')->url($fileName);
     }
 
-    public function getQuoteAsPDF($access,$fileName){
+    public function getQuoteAsPDF($access,$fileName,$quoteId,$tenant){
 
         $postdata = Http::withHeaders([
-            'xero-tenant-id' => '33467cfc-8512-4016-9d72-166bca5516fd',
+            'xero-tenant-id' => $tenant,
             'Authorization' => "Bearer {$access}",
             'Accept' => 'application/pdf',
             'Content-Type' => 'application/pdf'
         ])
-        ->get('https://api.xero.com/api.xro/2.0/Quotes/734639ca-5cc3-4c8d-b97d-0815096892b0')
+        ->get("https://api.xero.com/api.xro/2.0/Quotes/{$quoteId}")
         ->getBody()
         ->getContents();
 
