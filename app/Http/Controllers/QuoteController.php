@@ -10,12 +10,12 @@ use Webfox\Xero\OauthCredentialManager;
 class QuoteController extends Controller
 {
     public function index(Request $request, OauthCredentialManager $xeroCredentials){
-        $this->getQuoteAsPDF($xeroCredentials->getAccessToken());
-        return Storage::disk('google')->url('test.pdf');
+        $fileName = $request->quoteNumber.".pdf";
+        $this->getQuoteAsPDF($xeroCredentials->getAccessToken(),$fileName);
+        return Storage::disk('google')->url($fileName);
     }
 
-    public function getQuoteAsPDF($access){
-        $fileName = "test.pdf";
+    public function getQuoteAsPDF($access,$fileName){
 
         $postdata = Http::withHeaders([
             'xero-tenant-id' => '33467cfc-8512-4016-9d72-166bca5516fd',
