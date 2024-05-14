@@ -8,4 +8,4 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::get('/get-quote-as-pdf', [QuoteController::class, 'index']);
+Route::post('/get-quote-as-pdf', [QuoteController::class, 'index']);
