@@ -1,0 +1,2 @@
+[14-May-2024 02:14:08 UTC] PHP Warning:  require(/home/droneitcom/public_html/middleware.droneit.com.au/vendor/autoload.php): failed to open stream: No such file or directory in /home/droneitcom/public_html/middleware.droneit.com.au/artisan on line 8
+[14-May-2024 02:14:08 UTC] PHP Fatal error:  require(): Failed opening required '/home/droneitcom/public_html/middleware.droneit.com.au/vendor/autoload.php' (include_path='.:/opt/cpanel/ea-php72/root/usr/share/pear') in /home/droneitcom/public_html/middleware.droneit.com.au/artisan on line 8
