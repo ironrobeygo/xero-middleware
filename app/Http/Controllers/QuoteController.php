@@ -20,7 +20,7 @@ class QuoteController extends Controller
     public function getQuoteAsPDF($access,$fileName,$quoteId,$tenant){
 
         $postdata = Http::withHeaders([
-            'xero-tenant-id' => $tenant,
+            'xero-tenant-id' => "3467cfc-8512-4016-9d72-166bca5516fd",
             'Authorization' => "Bearer {$access}",
             'Accept' => 'application/pdf',
             'Content-Type' => 'application/pdf'
@@ -29,7 +29,7 @@ class QuoteController extends Controller
         ->getBody()
         ->getContents();
 
-        return Storage::disk('google')->put($fileName, $postdata);
+        return Storage::disk('local')->put($fileName, $postdata);
 
     }
 }
