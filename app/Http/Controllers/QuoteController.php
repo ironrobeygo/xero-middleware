@@ -11,11 +11,10 @@ class QuoteController extends Controller
 {
     public function index(Request $request, OauthCredentialManager $xeroCredentials){
         $access = $xeroCredentials->getAccessToken();
-        dump($access);
         $fileName = $request->quoteNumber.".pdf";
         $quoteId = $request->quoteId;
         $this->getQuoteAsPDF($access,$fileName,$quoteId);
-        return Storage::disk('local')->url($fileName);
+        return Storage::disk('google')->url($fileName);
     }
 
     public function getQuoteAsPDF($access,$fileName,$quoteId){
@@ -30,7 +29,7 @@ class QuoteController extends Controller
         ->getBody()
         ->getContents();
 
-        return Storage::disk('local')->put($fileName, $postdata);
+        return Storage::disk('google')->put($fileName, $postdata);
 
     }
 }
