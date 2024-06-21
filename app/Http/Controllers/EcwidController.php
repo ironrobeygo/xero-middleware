@@ -11,6 +11,6 @@ class EcwidController extends Controller
     public function index(Request $request){
 
         $response = Http::get('https://app.ecwid.com/api/v3/31163355/orders/'.request()->orderId.'?token='.config('ecwid.ecwid_token'));
-        return $response;
+        return json_decode($response->getBody());
     }
 }
