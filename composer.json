@@ -10,7 +10,6 @@
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
         "laravel/ui": "^4.5",
-        "proclame/monday-api-laravel": "^0.4.0",
         "webfox/laravel-xero-oauth2": "^4.2",
         "yaza/laravel-google-drive-storage": "^3.0"
     },
