@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use Monday;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Config;
+use App\Services\EcwidService;
+use App\Services\MondayService;
 
 class EcwidController extends Controller
 {
-    public function index(Request $request){
+    public function index(Request $request, EcwidService $ecwidService, MondayService $mondayService){
 
-        $response = Http::get('https://app.ecwid.com/api/v3/31163355/orders/'.request()->orderId.'?token='.config('ecwid.ecwid_token'));
-        return json_decode($response->getBody());
+        $courses = $ecwidService->parseOrder(request()->orderId);
+        return $mondayService->addSubItem(request()->parentId, $courses);
+        
     }
 }

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "65f47e4eb13854ccdf3273f0b8305800",
+    "content-hash": "3d7be0887180effb84f733551b69f78b",
     "packages": [
         {
             "name": "brick/math",
@@ -3110,63 +3110,6 @@
                 }
             ],
             "time": "2024-06-17T10:11:32+00:00"
-        },
-        {
-            "name": "proclame/monday-api-laravel",
-            "version": "v0.4.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/proclame/monday-api-laravel.git",
-                "reference": "e8ed8c0beca789fff525fe0e389b863ec3d54b74"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/proclame/monday-api-laravel/zipball/e8ed8c0beca789fff525fe0e389b863ec3d54b74",
-                "reference": "e8ed8c0beca789fff525fe0e389b863ec3d54b74",
-                "shasum": ""
-            },
-            "require": {
-                "laravel/framework": ">=5.5",
-                "php": ">=7.2.0",
-                "tblack-it/monday-api": ">=0.2.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Proclame\\Monday\\MondayServiceProvider"
-                    ],
-                    "aliases": {
-                        "Monday": "Proclame\\Monday\\MondayFacade"
-                    }
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Proclame\\Monday\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Nick Mispoulier",
-                    "email": "nick@proclame.be"
-                }
-            ],
-            "description": "Laravel wrapper around the monday-api package from tblack-it",
-            "homepage": "https://github.com/proclame/monday-api-laravel",
-            "keywords": [
-                "laravel",
-                "monday"
-            ],
-            "support": {
-                "issues": "https://github.com/proclame/monday-api-laravel/issues",
-                "source": "https://github.com/proclame/monday-api-laravel/tree/v0.4.0"
-            },
-            "time": "2024-01-24T22:32:37+00:00"
         },
         {
             "name": "psr/cache",
@@ -6292,46 +6235,6 @@
                 }
             ],
             "time": "2024-05-31T14:57:53+00:00"
-        },
-        {
-            "name": "tblack-it/monday-api",
-            "version": "v0.2.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Softinthebox/monday-api.git",
-                "reference": "60652d3d0551b69ea0c0e9eec832ad66ae690526"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Softinthebox/monday-api/zipball/60652d3d0551b69ea0c0e9eec832ad66ae690526",
-                "reference": "60652d3d0551b69ea0c0e9eec832ad66ae690526",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.5.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "TBlack\\MondayAPI\\": "src/MondayAPI"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "LGPL-2.1-only"
-            ],
-            "authors": [
-                {
-                    "name": "Pedro Teixeira",
-                    "email": "pedro.teixeira@tblack-it.com"
-                }
-            ],
-            "description": "Monday v2 API developed by TBLACK-IT",
-            "support": {
-                "issues": "https://github.com/Softinthebox/monday-api/issues",
-                "source": "https://github.com/Softinthebox/monday-api/tree/v0.2.4"
-            },
-            "time": "2023-12-21T10:29:46+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
