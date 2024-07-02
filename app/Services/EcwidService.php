@@ -45,8 +45,14 @@ class EcwidService {
                         'discount' => isset($item->couponAmount) ? $this->getOrderPercentage($item->couponAmount) : $discount
                     );
                 }
+            } else if($item->name == 'ReOC - Student Upgrade') {
+                $courses[] = array(
+                    'name' => 'Remote Operator Certificate (ReOC)',
+                    'price' => 2000,
+                    'quantity' => $item->quantity,
+                    'discount' => isset($item->couponAmount) ? $this->getOrderPercentage($item->couponAmount) : $discount
+                );
             } else {
-                $itemName = str_replace(['- Student Upgrade'], '', $item->name);
                 $courses[] = array(
                     'name' => $itemName,
                     'price' => $item->productPrice == $item->price ? $item->productPrice : $item->price,
