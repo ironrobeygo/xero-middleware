@@ -31,6 +31,8 @@ class MondayService {
 
     public function addSubItem($parentId, $items){
 
+      $return = [];
+
       foreach($items as $item){
         $query = 'mutation {
           create_subitem (
@@ -50,9 +52,11 @@ class MondayService {
           }
         }';
 
-        $this->request($query);
+        $return[] = $this->request($query);
 
       }
+
+      return $return;
       
     }
 
