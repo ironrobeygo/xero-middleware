@@ -46,8 +46,9 @@ class EcwidService {
                     );
                 }
             } else {
+                $itemName = str_replace(['- Student Upgrade'], '', $item->name);
                 $courses[] = array(
-                    'name' => $item->name,
+                    'name' => $itemName,
                     'price' => $item->productPrice == $item->price ? $item->productPrice : $item->price,
                     'quantity' => $item->quantity,
                     'discount' => isset($item->couponAmount) ? $this->getOrderPercentage($item->couponAmount) : $discount
