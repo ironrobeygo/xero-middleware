@@ -54,7 +54,7 @@ class EcwidService {
                 );
             } else {
                 $courses[] = array(
-                    'name' => $itemName,
+                    'name' => $item->name,
                     'price' => $item->productPrice == $item->price ? $item->productPrice : $item->price,
                     'quantity' => $item->quantity,
                     'discount' => isset($item->couponAmount) ? $this->getOrderPercentage($item->couponAmount) : $discount
