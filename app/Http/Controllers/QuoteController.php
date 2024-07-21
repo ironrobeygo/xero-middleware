@@ -10,7 +10,7 @@ use Webfox\Xero\OauthCredentialManager;
 
 class QuoteController extends Controller
 {
-    public function index(Request $request, OauthCredentialManager $xeroCredentials){
+    public function index(Request $request, OauthCredentialManager $xeroCredentials, XeroService $xeroService){
         $access = $xeroCredentials->getAccessToken();
         $fileName = $request->quoteNumber.".pdf";
         $quoteId = $request->quoteId;
