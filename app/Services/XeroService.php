@@ -36,7 +36,7 @@ class XeroService {
                 'ContactID' => request()->ContactID
             ],
             'Reference' => request()->Reference,
-            'LineItems' => json_decode(request()->LineItems, true),
+            'LineItems' => request()->LineItems,
             'Date'      => request()->Date,
             'Expiry'    => request()->Expiry,
             'Status'    => 'SENT',
