@@ -26,7 +26,7 @@ class XeroService {
     public function generateQuote($access){
 
         $postdata = Http::withHeaders([
-            'xero-tenant-id' => "33467cfc-8512-4016-9d72-166bca5516fd",
+            'xero-tenant-id' => config('xero.xero_tenant_id'),
             'Authorization' => "Bearer {$access}",
             'Accept' => 'application/json',
             'Content-Type' => 'application/json'
@@ -40,12 +40,36 @@ class XeroService {
             'Date'      => request()->Date,
             'Expiry'    => request()->Expiry,
             'Status'    => 'SENT',
-            'LineAmountTypes' => 'EXCLUSIVE',
+            'LineAmountTypes' => 'INCLUSIVE',
             'BrandingThemeID' => request()->BrandingTheme
         ]);
 
         return json_decode($postdata->getBody()->getContents());
 
+    }
+
+    public function generateInvoice($access){
+        $postdata = Http::withHeaders([
+            'xero-tenant-id' => config('xero.xero_tenant_id'),
+            'Authorization' => "Bearer {$access}",
+            'Accept' => 'application/json',
+            'Content-Type' => 'application/json'
+        ])
+        ->put('https://api.xero.com/api.xro/2.0/Invoices', [
+            "Type" => "ACCREC",
+            'Contact' => [
+                'ContactID' => request()->ContactID
+            ],
+            'Reference' => request()->Reference,
+            'LineItems' => request()->LineItems,
+            'Date'      => request()->Date,
+            'DueDate'   => request()->Expiry,
+            'Status'    => 'AUTHORISED',
+            'LineAmountTypes' => 'INCLUSIVE',
+            'BrandingThemeID' => request()->BrandingTheme
+        ]);
+
+        return json_decode($postdata->getBody()->getContents());
     }
 
 }
