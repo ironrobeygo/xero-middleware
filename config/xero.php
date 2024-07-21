@@ -24,6 +24,11 @@ return [
         'client_id'                  => env('XERO_CLIENT_ID'),
 
         /************************************************************************
+         * Tenant ID provided by Xero when registering your application
+         ************************************************************************/        
+        'xero_tenant_id'             => env('XERO_TENANT_ID', '')
+
+        /************************************************************************
          * Client Secret provided by Xero when registering your application
          ************************************************************************/
         'client_secret'              => env('XERO_CLIENT_SECRET'),
@@ -69,7 +74,7 @@ return [
          ************************************************************************/
         'url_authorize'              => 'https://login.xero.com/identity/connect/authorize',
         'url_access_token'           => 'https://identity.xero.com/connect/token',
-        'url_resource_owner_details' => 'https://api.xero.com/api.xro/2.0/Organisation',
+        'url_resource_owner_details' => 'https://api.xero.com/api.xro/2.0/Organisation'
     ],
 
 ];
