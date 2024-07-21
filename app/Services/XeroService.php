@@ -10,7 +10,7 @@ class XeroService {
     public function getQuoteAsPDF($access,$fileName,$quoteId){
         
         $postdata = Http::withHeaders([
-            'xero-tenant-id' => "33467cfc-8512-4016-9d72-166bca5516fd",
+            'xero-tenant-id' => config('xero.xero_tenant_id'),
             'Authorization' => "Bearer {$access}",
             'Accept' => 'application/pdf',
             'Content-Type' => 'application/pdf'
