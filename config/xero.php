@@ -26,7 +26,7 @@ return [
         /************************************************************************
          * Tenant ID provided by Xero when registering your application
          ************************************************************************/        
-        'xero_tenant_id'             => env('XERO_TENANT_ID', ''),
+        'xero_tenant_id'             => env('XERO_TENANT_ID'),
 
         /************************************************************************
          * Client Secret provided by Xero when registering your application

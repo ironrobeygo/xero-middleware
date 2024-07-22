@@ -21,7 +21,7 @@ class QuoteController extends Controller
 
     public function store(Request $request, OauthCredentialManager $xeroCredentials, XeroService $xeroService){
         $access = $xeroCredentials->getAccessToken();
-        if( request()->type == 'Quote' ){
+        if( request()->Type == 'Quote' ){
             $return = $xeroService->generateQuote($access);
         } else {
             $return = $xeroService->generateInvoice($access);
