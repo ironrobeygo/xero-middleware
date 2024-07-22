@@ -46,6 +46,7 @@ return [
             'openid',
             'email',
             'profile',
+            'files',
             'offline_access',
             'accounting.settings',
             'accounting.transactions'
