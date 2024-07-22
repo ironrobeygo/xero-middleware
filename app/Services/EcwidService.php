@@ -16,16 +16,21 @@ class EcwidService {
 
         $discount = $order->volumeDiscount > 0 ? $this->getOrderPercentage($order->volumeDiscount,$order->subtotal) : 0;
 
+        dump($order->volumeDiscount);
+        dump($order->subtotal);
+
         $courses = [];
 
         foreach($order->items as $item){
             if(str_contains($item->name, 'RePL')){
 
+                dd($item);
+
                 $courses[] = array(
                     'name' => '7kg RePL Commercial Course (RePL)',
                     'price' => 1350,
                     'quantity' => $item->quantity,
-                    'discount' => isset($item->couponAmount) ? $this->getOrderPercentage($item->couponAmount) : $discount
+                    'discount' => isset($item->couponAmount) ? $this->getOrderPercentage($item->couponAmount, 1350) : $discount
                 );
 
                 if(in_array($item->name, ['RePL Commercial Professional', 'RePL Commercial Essentials'])){
@@ -33,7 +38,7 @@ class EcwidService {
                         'name' => 'Aeronautical Radio Operator Certificate (AROC)',
                         'price' => 400,
                         'quantity' => $item->quantity,
-                        'discount' => isset($item->couponAmount) ? $this->getOrderPercentage($item->couponAmount) : $discount
+                        'discount' => isset($item->couponAmount) ? $this->getOrderPercentage($item->couponAmount, 400) : $discount
                     );
                 }
 
@@ -42,7 +47,7 @@ class EcwidService {
                         'name' => 'Remote Operator Certificate (ReOC)',
                         'price' => 2000,
                         'quantity' => $item->quantity,
-                        'discount' => isset($item->couponAmount) ? $this->getOrderPercentage($item->couponAmount) : $discount
+                        'discount' => isset($item->couponAmount) ? $this->getOrderPercentage($item->couponAmount, 2000) : $discount
                     );
                 }
             } else if($item->name == 'ReOC - Student Upgrade') {
@@ -50,14 +55,15 @@ class EcwidService {
                     'name' => 'Remote Operator Certificate (ReOC)',
                     'price' => 2000,
                     'quantity' => $item->quantity,
-                    'discount' => isset($item->couponAmount) ? $this->getOrderPercentage($item->couponAmount) : $discount
+                    'discount' => isset($item->couponAmount) ? $this->getOrderPercentage($item->couponAmount, 2000) : $discount
                 );
             } else {
+                $itemPrice = $item->productPrice == $item->price ? $item->productPrice : $item->price;
                 $courses[] = array(
                     'name' => $item->name,
-                    'price' => $item->productPrice == $item->price ? $item->productPrice : $item->price,
+                    'price' => $itemPrice,
                     'quantity' => $item->quantity,
-                    'discount' => isset($item->couponAmount) ? $this->getOrderPercentage($item->couponAmount) : $discount
+                    'discount' => isset($item->couponAmount) ? $this->getOrderPercentage($item->couponAmount, $itemPrice) : $discount
                 );
             }
 
