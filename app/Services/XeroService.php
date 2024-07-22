@@ -49,6 +49,7 @@ class XeroService {
     }
 
     public function generateInvoice($access){
+        
         $postdata = Http::withHeaders([
             'xero-tenant-id' => "33467cfc-8512-4016-9d72-166bca5516fd",
             'Authorization' => "Bearer {$access}",
