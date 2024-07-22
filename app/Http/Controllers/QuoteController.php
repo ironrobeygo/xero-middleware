@@ -28,4 +28,9 @@ class QuoteController extends Controller
         }
         return $return;
     }
+
+    public function getInvoiceUrl(OauthCredentialManager $xeroCredentials, XeroService $xeroService){
+        $access = $xeroCredentials->getAccessToken();
+        return $xeroService->getInvoiceUrl($access);
+    }
 }

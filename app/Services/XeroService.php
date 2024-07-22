@@ -73,4 +73,22 @@ class XeroService {
         return json_decode($postdata->getBody()->getContents());
     }
 
+    public function getInvoiceUrl($access){
+
+        $postdata = Http::withHeaders([
+            'xero-tenant-id' => "33467cfc-8512-4016-9d72-166bca5516fd",
+            'Authorization' => "Bearer {$access}",
+            'Accept' => 'application/json',
+            'Content-Type' => 'application/json'
+        ])
+        ->get("https://api.xero.com/api.xro/2.0/Invoices/753ca8b9-c004-4305-b8c7-d5afebda6b06/OnlineInvoice")
+        ->getBody()
+        ->getContents();
+
+        return $postdata;
+
+        
+
+    }
+
 }
