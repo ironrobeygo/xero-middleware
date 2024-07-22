@@ -10,7 +10,7 @@ class XeroService {
     public function getQuoteAsPDF($access,$fileName,$quoteId){
         
         $postdata = Http::withHeaders([
-            'xero-tenant-id' => config('xero.xero_tenant_id'),
+            'xero-tenant-id' => "33467cfc-8512-4016-9d72-166bca5516fd",
             'Authorization' => "Bearer {$access}",
             'Accept' => 'application/pdf',
             'Content-Type' => 'application/pdf'
@@ -26,7 +26,7 @@ class XeroService {
     public function generateQuote($access){
 
         $postdata = Http::withHeaders([
-            'xero-tenant-id' => config('xero.xero_tenant_id'),
+            'xero-tenant-id' => "33467cfc-8512-4016-9d72-166bca5516fd",
             'Authorization' => "Bearer {$access}",
             'Accept' => 'application/json',
             'Content-Type' => 'application/json'
@@ -49,8 +49,9 @@ class XeroService {
     }
 
     public function generateInvoice($access){
+        
         $postdata = Http::withHeaders([
-            'xero-tenant-id' => config('xero.xero_tenant_id'),
+            'xero-tenant-id' => "33467cfc-8512-4016-9d72-166bca5516fd",
             'Authorization' => "Bearer {$access}",
             'Accept' => 'application/json',
             'Content-Type' => 'application/json'
@@ -65,7 +66,7 @@ class XeroService {
             'Date'      => request()->Date,
             'DueDate'   => request()->Expiry,
             'Status'    => 'AUTHORISED',
-            'LineAmountTypes' => 'INCLUSIVE',
+            'LineAmountTypes' => 'Inclusive',
             'BrandingThemeID' => request()->BrandingTheme
         ]);
 
@@ -73,4 +74,3 @@ class XeroService {
     }
 
 }
-
