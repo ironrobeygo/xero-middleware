@@ -86,10 +86,9 @@ class XeroService {
             'Accept' => 'application/json',
             'Content-Type' => 'application/json'
         ])
-        ->get($url)
-        ->getBody()
-        ->getContents();
-        return $postdata;
+        ->get($url);
+        
+        return json_decode($postdata->getBody()->getContents());
     }
 
     public function updateInvoice($access){
