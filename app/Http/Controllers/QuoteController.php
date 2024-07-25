@@ -33,4 +33,9 @@ class QuoteController extends Controller
         $access = $xeroCredentials->getAccessToken();
         return $xeroService->getInvoice($access);
     }
+
+    public function update(OauthCredentialManager $xeroCredentials, XeroService $xeroService){
+        $access = $xeroCredentials->getAccessToken();
+        return $xeroService->updateInvoice($access);
+    }
 }

@@ -94,6 +94,8 @@ class XeroService {
 
     public function updateInvoice($access){
 
+        $invoiceId = request()->InvoiceID;
+
         $postdata = Http::withHeaders([
             'xero-tenant-id' => "33467cfc-8512-4016-9d72-166bca5516fd",
             'Authorization' => "Bearer {$access}",
