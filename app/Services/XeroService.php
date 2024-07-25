@@ -73,7 +73,12 @@ class XeroService {
         return json_decode($postdata->getBody()->getContents());
     }
 
-    public function getInvoiceUrl($access,$invoiceId){
+    public function getInvoice($access){
+
+        $params = request()->type=="url"?"/OnlineInvoice":"";
+        $invoiceId = request()->invoiceId;
+
+        $url = "https://api.xero.com/api.xro/2.0/Invoices/{$invoiceId}{$params}";
 
         $postdata = Http::withHeaders([
             'xero-tenant-id' => "33467cfc-8512-4016-9d72-166bca5516fd",
@@ -81,14 +86,35 @@ class XeroService {
             'Accept' => 'application/json',
             'Content-Type' => 'application/json'
         ])
-        ->get("https://api.xero.com/api.xro/2.0/Invoices/{$invoiceId}/OnlineInvoice")
+        ->get($url)
         ->getBody()
         ->getContents();
-
         return $postdata;
+    }
 
-        
+    public function updateInvoice($access){
 
+        $postdata = Http::withHeaders([
+            'xero-tenant-id' => "33467cfc-8512-4016-9d72-166bca5516fd",
+            'Authorization' => "Bearer {$access}",
+            'Accept' => 'application/json',
+            'Content-Type' => 'application/json'
+        ])
+        ->post("https://api.xero.com/api.xro/2.0/Invoices/{$invoiceId}", [
+            'Contact' => [
+                'ContactID' => request()->ContactID
+            ],
+            'Type'      => 'ACCREC',
+            'Reference' => request()->Reference,
+            'LineItems' => request()->LineItems,
+            'Date'      => request()->Date,
+            'DueDate'    => request()->Expiry,
+            'Status'    => 'AUTHORISED',
+            "LineAmountTypes" => "Inclusive",
+            'BrandingThemeID' => request()->BrandingTheme
+        ]);
+
+        return json_decode($postdata->getBody()->getContents());
     }
 
 }
