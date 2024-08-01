@@ -11,11 +11,17 @@ use Webfox\Xero\OauthCredentialManager;
 class QuoteController extends Controller
 {
     public function index(Request $request, OauthCredentialManager $xeroCredentials, XeroService $xeroService){
+
         $access = $xeroCredentials->getAccessToken();
-        $fileName = $request->quoteNumber.".pdf";
         $quoteId = $request->quoteId;
-        $xeroService->getQuoteAsPDF($access,$fileName,$quoteId);
-        return Storage::disk('google')->url($fileName);
+
+        if(request()->path() == 'api/get-quote-as-pdf'){
+            $fileName = $request->quoteNumber.".pdf";
+            $xeroService->getQuoteAsPDF($access,$fileName,$quoteId);
+            return Storage::disk('google')->url($fileName);
+        } else {
+            return $xeroService->getQuote($access,$quoteId);
+        }
     }
 
 
