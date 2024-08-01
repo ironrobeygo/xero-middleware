@@ -25,6 +25,10 @@ class QuoteController extends Controller
         }
     }
 
+    public function updateQuote(OauthCredentialManager $xeroCredentials, XeroService $xeroService){
+        $access = $xeroCredentials->getAccessToken();
+        return $xeroService->updateQuote($access);
+    }
 
     public function store(Request $request, OauthCredentialManager $xeroCredentials, XeroService $xeroService){
         $access = $xeroCredentials->getAccessToken();

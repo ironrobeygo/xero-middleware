@@ -33,6 +33,31 @@ class XeroService {
         ])
         ->get("https://api.xero.com/api.xro/2.0/Quotes?QuoteNumber={$quoteNumber}");
 
+        return json_encode($postdata->getBody()->getContents());
+    }
+
+    public function updateQuote($access){
+        $quoteId = request()->QuoteId;
+
+        $postdata = Http::withHeaders([
+            'xero-tenant-id' => "33467cfc-8512-4016-9d72-166bca5516fd",
+            'Authorization' => "Bearer {$access}",
+            'Accept' => 'application/json',
+            'Content-Type' => 'application/json'
+        ])
+        ->post("https://api.xero.com/api.xro/2.0/Quotes/{$quoteId}", [
+            'Contact' => [
+                'ContactID' => request()->ContactID
+            ],
+            'Reference' => request()->Reference,
+            'LineItems' => request()->LineItems,
+            'Date'      => request()->Date,
+            'ExpiryDate'    => request()->Expiry,
+            'Status'    => 'AUTHORISED',
+            "LineAmountTypes" => "Inclusive",
+            'BrandingThemeID' => request()->BrandingTheme
+        ]);
+
         return json_decode($postdata->getBody()->getContents());
     }
 
