@@ -23,7 +23,7 @@ class XeroService {
 
     }
 
-    public function getQuote($access,$quoteId){
+    public function getQuote($access,$quoteNumber){
 
         $postdata = Http::withHeaders([
             'xero-tenant-id' => "33467cfc-8512-4016-9d72-166bca5516fd",
@@ -31,7 +31,7 @@ class XeroService {
             'Accept' => 'application/json',
             'Content-Type' => 'application/json'
         ])
-        ->get("https://api.xero.com/api.xro/2.0/Quotes/{$quoteId}");
+        ->get("https://api.xero.com/api.xro/2.0/Quotes?QuoteNumber={$quoteNumber}");
 
         return json_decode($postdata->getBody()->getContents());
     }

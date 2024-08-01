@@ -20,7 +20,8 @@ class QuoteController extends Controller
             $xeroService->getQuoteAsPDF($access,$fileName,$quoteId);
             return Storage::disk('google')->url($fileName);
         } else {
-            return $xeroService->getQuote($access,$quoteId);
+            $quoteNumber = request()->quoteNumber;
+            return $xeroService->getQuote($access,$quoteNumber);
         }
     }
 
